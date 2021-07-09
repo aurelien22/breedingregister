@@ -14,16 +14,14 @@
 	<name>breedingregister</name>
 	<description>API for a breeding register application</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>15</java.version>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,6 +37,11 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.11.2</version>
 		</dependency>
 	</dependencies>
 

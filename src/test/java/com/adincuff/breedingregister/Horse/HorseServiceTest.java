@@ -1,18 +1,18 @@
 package com.adincuff.breedingregister.Horse;
 
+import com.adincuff.breedingregister.User.User;
 import com.adincuff.breedingregister.User.UserRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
 public class HorseServiceTest {
 
     @Mock
@@ -30,6 +30,17 @@ public class HorseServiceTest {
         List<Horse> horses = horseService.getAllHorses();
 
         verify(horseRepository).findAll();
+
+    }
+
+    @Test
+    void shouldCallTheRepositoryWhenGetAllHorsesByUserFunctionIsCall() {
+
+        when(userRepository.findById("217h391e810c19729de860ml")).thenReturn(java.util.Optional.of(new User("217h391e810c19729de860ml", "Aurélien")));
+
+        List<Horse> horses = horseService.getHorsesByUser("217h391e810c19729de860ml");
+
+        verify(horseRepository).findByUserId("217h391e810c19729de860ml");
 
     }
 }

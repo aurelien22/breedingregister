@@ -32,4 +32,15 @@ public class HorseService {
             return horseRepository.findByUserId(userId);
         }
     }
+
+    public Horse getHorseById(String horseId) {
+
+        Optional<Horse> horse = horseRepository.findById(horseId);
+
+        if (horse.isEmpty()) {
+            throw new HorseNotFoundException((String.format("Horse with id: '%s' not found", horseId)));
+        } else {
+            return horse.get();
+        }
+    }
 }

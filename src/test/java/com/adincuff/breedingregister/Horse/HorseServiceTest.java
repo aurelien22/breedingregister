@@ -7,7 +7,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -25,7 +28,7 @@ public class HorseServiceTest {
     private HorseService horseService;
 
     @Test
-    void shouldCallTheRepositoryWhenGetAllHorsesFunctionIsCall() {
+    void shouldCallTheRepositoryWhenGetAllHorsesIsCall() {
 
         List<Horse> horses = horseService.getAllHorses();
 
@@ -34,7 +37,7 @@ public class HorseServiceTest {
     }
 
     @Test
-    void shouldCallTheRepositoryWhenGetAllHorsesByUserFunctionIsCall() {
+    void shouldCallTheRepositoryWhenGetAllHorsesByUserIsCall() {
 
         when(userRepository.findById("217h391e810c19729de860ml")).thenReturn(java.util.Optional.of(new User("217h391e810c19729de860ml", "Aurélien")));
 
@@ -43,4 +46,15 @@ public class HorseServiceTest {
         verify(horseRepository).findByUserId("217h391e810c19729de860ml");
 
     }
+
+    @Test
+    void shouldCallTheRepositoryWhenGetHorseByIdIsCall() {
+
+        when(horseRepository.findById("507f191e810c19729de860ea")).thenReturn(Optional.of(new Horse("507f191e810c19729de860ea", "exeko camara", Gender.GELDING, Color.BAY, Race.FRENCH_SADDLEBRED, LocalDate.of(2014, 06, 24), "217h391e810c19729de860ml")));
+
+        Horse horse = horseService.getHorseById("507f191e810c19729de860ea");
+
+        verify(horseRepository).findById("507f191e810c19729de860ea");
+    }
+
 }

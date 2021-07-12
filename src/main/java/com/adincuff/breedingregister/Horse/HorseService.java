@@ -32,4 +32,8 @@ public class HorseService {
             return horseRepository.findByUserId(userId);
         }
     }
+
+    public Horse getHorseById(String id) {
+        return null;
+    }
 }

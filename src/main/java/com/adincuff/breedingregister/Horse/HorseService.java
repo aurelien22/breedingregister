@@ -43,4 +43,18 @@ public class HorseService {
             return horse.get();
         }
     }
+
+    public String addNewHorse(HorseRequest horseRequest) {
+
+        Horse horseToAdd = new Horse(horseRequest.getName(), horseRequest.getGender(), horseRequest.getColor(), horseRequest.getRace(), horseRequest.getDateOfBirth(), horseRequest.getUserId());
+
+        Optional<User> user = userRepository.findById(horseRequest.getUserId());
+
+        if (user.isEmpty()) {
+            throw new UserNotFoundException((String.format("User with id: '%s' not found", horseRequest.getUserId())));
+        } else {
+            Horse horse = horseRepository.save(horseToAdd);
+            return horse.getId();
+        }
+    }
 }

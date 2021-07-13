@@ -56,5 +56,4 @@ public class HorseServiceTest {
 
         verify(horseRepository).findById("507f191e810c19729de860ea");
     }
-
 }

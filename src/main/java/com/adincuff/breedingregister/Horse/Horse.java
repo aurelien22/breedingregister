@@ -27,6 +27,15 @@ public class Horse {
         this.userId = userId;
     }
 
+    public Horse(String name, Gender gender, Color color, Race race, LocalDate dateOfBirth, String userId) {
+        this.name = name;
+        this.gender = gender;
+        this.color = color;
+        this.race = race;
+        this.dateOfBirth = dateOfBirth;
+        this.userId = userId;
+    }
+
     public String getId() {
         return id;
     }
